@@ -44,7 +44,7 @@ module.exports = (_, argv) => ({
       name: 'host',
       filename: 'remoteEntry.js',
       remotes: {
-        nav: 'nav@http://localhost:3011/remoteEntry.js',
+        store: 'store@http://localhost:3011/remoteEntry.js',
         section_1: 'section_1@http://localhost:3012/remoteEntry.js',
         section_2: 'section_2@http://localhost:3013/remoteEntry.js',
         section_3: 'section_3@http://localhost:3014/remoteEntry.js',

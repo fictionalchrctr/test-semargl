@@ -4,7 +4,7 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const deps = require('./package.json').dependencies
 module.exports = (_, argv) => ({
   output: {
-    publicPath: 'http://localhost:3014/',
+    publicPath: 'http://localhost:3011/',
   },
 
   resolve: {
@@ -12,7 +12,7 @@ module.exports = (_, argv) => ({
   },
 
   devServer: {
-    port: 3014,
+    port: 3011,
     historyApiFallback: true,
   },
 
@@ -41,11 +41,11 @@ module.exports = (_, argv) => ({
 
   plugins: [
     new ModuleFederationPlugin({
-      name: 'section_3',
+      name: 'store',
       filename: 'remoteEntry.js',
-      remotes: { store: 'store@http://localhost:3011/remoteEntry.js' },
+      remotes: {},
       exposes: {
-        './Section3': './src/Section3',
+        './store': './src/store',
       },
       shared: {
         ...deps,

@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useStore } from 'store/store'
 
 const ToDoList = () => {
   const [todos, setTodos] = useState([])
@@ -6,21 +7,24 @@ const ToDoList = () => {
   const [todoEditing, setTodoEditing] = useState(null)
   const [editingText, setEditingText] = useState('')
 
-  // useEffect(() => {
-  //   const json = localStorage.getItem('todos')
-  //   const loadedTodos = JSON.parse(json)
-  //   if (loadedTodos) {
-  //     setTodos(loadedTodos)
-  //   }
-  // }, [])
+  const store = useStore()
+  const { setCurrentToDo } = store
 
-  // useEffect(() => {
-  //   const json = JSON.stringify(todos)
-  //   localStorage.setItem('todos', json)
-  // }, [todos])
+  useEffect(() => {
+    const json = localStorage.getItem('todos')
+    const loadedTodos = JSON.parse(json)
+    if (loadedTodos) {
+      setTodos(loadedTodos)
+    }
+  }, [])
 
-  function handleSubmit(e) {
-    e.preventDefault()
+  useEffect(() => {
+    const json = JSON.stringify(todos)
+    localStorage.setItem('todos', json)
+  }, [todos])
+
+  function handleSubmit(event) {
+    event.preventDefault()
 
     const newTodo = {
       id: new Date().getTime(),
@@ -57,6 +61,8 @@ const ToDoList = () => {
     setTodoEditing(null)
   }
 
+  setCurrentToDo(todos)
+
   return (
     <div className=' w-auto mx-14 my-auto'>
       <h1>Todo List</h1>
@@ -79,7 +85,7 @@ const ToDoList = () => {
       </form>
       {todos.map((todo) => (
         <div key={todo.id} className='flex flex-col'>
-          <div className='text-xl mb-4 flex  rounded-xl items-center justify-between border-solid border-2  border-[#f3f3f3] rounded-[40px]'>
+          <div className='text-xl mb-4 flex  rounded-xl items-center justify-between border-solid border-2  border-[#f3f3f3]'>
             <input
               type='checkbox'
               className=' p-1 m-1 cursor-pointer'

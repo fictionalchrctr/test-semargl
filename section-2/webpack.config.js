@@ -43,7 +43,9 @@ module.exports = (_, argv) => ({
     new ModuleFederationPlugin({
       name: 'section_2',
       filename: 'remoteEntry.js',
-      remotes: {},
+      remotes: {
+        store: 'store@http://localhost:3011/remoteEntry.js',
+      },
       exposes: {
         './Section2': './src/Section2',
       },
