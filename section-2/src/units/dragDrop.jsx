@@ -21,7 +21,6 @@ const DragDrop = () => {
   }
 
   const handleChange = (e) => {
-    console.log('e.target.files', e.target.files)
     setFile(e.target.files[0])
   }
 
@@ -35,7 +34,6 @@ const DragDrop = () => {
     }
   }
 
-  // console.log('selectSize', selectSize(file))
   return (
     <div className='py-12 items-center'>
       <div className=' max-w-7xl mx-auto sm:px-6 lg:px-8'>

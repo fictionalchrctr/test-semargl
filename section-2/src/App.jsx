@@ -1,9 +1,12 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 import './index.css'
 import { StoreProvider } from 'store/store'
 import Section2 from './Section2'
+
+const container = document.getElementById('app')
+const root = createRoot(container)
 
 const App = () => (
   <StoreProvider>
@@ -12,4 +15,4 @@ const App = () => (
     </div>
   </StoreProvider>
 )
-ReactDOM.render(<App />, document.getElementById('app'))
+root.render(<App />)

@@ -61,7 +61,9 @@ const ToDoList = () => {
     setTodoEditing(null)
   }
 
-  setCurrentToDo(todos)
+  useEffect(() => {
+    setCurrentToDo(todos)
+  }, [todos])
 
   return (
     <div className=' w-auto mx-14 my-auto'>

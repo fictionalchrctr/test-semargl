@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { useStore } from 'store/store'
 
@@ -15,7 +15,24 @@ const Section1 = () => {
 
   console.log('inputText', inputText)
 
-  setTextArea(inputText)
+  useEffect(() => {
+    const loadedInput =
+      localStorage.getItem('input1') !== undefined
+        ? JSON.parse(localStorage.getItem('input1'))
+        : null
+    if (loadedInput) {
+      setInputText(loadedInput)
+    }
+  }, [])
+
+  useEffect(() => {
+    const json = JSON.stringify(inputText)
+    localStorage.setItem('input1', json)
+  }, [inputText])
+
+  useEffect(() => {
+    setTextArea(inputText)
+  }, [inputText])
 
   return (
     <div>
@@ -43,10 +60,10 @@ const Section1 = () => {
         </button>
       </div>
       <div className='p-2 m-2'>
-        <input
+        <textarea
           onChange={handleTextArea}
           className='p-2 text-sm   focus:outline-none ring-1  hover:ring-red-500  focus:ring-2 focus:ring-red-500 shadow-sm rounded-lg text-black'
-        ></input>
+        ></textarea>
       </div>
     </div>
   )

@@ -3,7 +3,7 @@ import { useStore } from 'store/store'
 
 const Unit1 = () => {
   const store = useStore()
-  const { setSelector_2_1 } = store
+  const { setSelector_2_1, setTable_2_1 } = store
   const [searchQuery, setSerarchQuery] = useState('')
   const [selectedProf, setSelectedProf] = useState('')
 
@@ -21,6 +21,23 @@ const Unit1 = () => {
     const json = JSON.stringify(selectedProf)
     localStorage.setItem('selector', json)
   }, [selectedProf])
+
+  // //////////////////////////////////////////////////
+
+  useEffect(() => {
+    const loadedQuery =
+      localStorage.getItem('query') !== undefined
+        ? JSON.parse(localStorage.getItem('query'))
+        : null
+    if (loadedQuery) {
+      setSerarchQuery(loadedQuery)
+    }
+  }, [])
+
+  useEffect(() => {
+    const json = JSON.stringify(searchQuery)
+    localStorage.setItem('query', json)
+  }, [searchQuery])
 
   const data = [
     {
@@ -68,7 +85,7 @@ const Unit1 = () => {
   }
 
   const handleSearchQuery = (event) => {
-    setSelectedProf(null)
+    setSelectedProf('')
     setSerarchQuery(event.target.value)
   }
 
@@ -84,7 +101,14 @@ const Unit1 = () => {
   }
 
   const filteredData = filterData(data)
-  setSelector_2_1(selectedProf)
+
+  useEffect(() => {
+    setSelector_2_1(selectedProf)
+  }, [selectedProf])
+
+  useEffect(() => {
+    setTable_2_1(filteredData)
+  }, [selectedProf, searchQuery])
 
   return (
     <div className='flex flex-row justify-between'>

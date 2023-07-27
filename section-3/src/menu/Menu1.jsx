@@ -1,8 +1,6 @@
 import React from 'react'
 
 const Menu1 = ({ selector_2_1, toDosList }) => {
-  console.log('selector_2_1', selector_2_1)
-  console.log('typeof(selector_2_1)', typeof selector_2_1)
   return (
     <div>
       <p>Подменю 1</p>

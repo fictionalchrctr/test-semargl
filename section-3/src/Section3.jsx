@@ -10,7 +10,7 @@ import Menu3 from './menu/menu3'
 
 const Section3 = () => {
   const store = useStore()
-  const { color, selector_2_1, currentToDo, textArea1 } = store
+  const { color, selector_2_1, currentToDo, textArea1, table_2_1 } = store
   document.title = 'Раздел 3'
   const [toggleState, setToggleState] = useState(1)
 
@@ -64,24 +64,25 @@ const Section3 = () => {
       <div className='content-tabs3 p-7 flex-1 h-screen  '>
         <div
           className={
-            ' p-5 w-max h-max ' + (toggleState === 1 ? ' block' : 'hidden')
+            ' p-5 max-w-6xl h-max ' + (toggleState === 1 ? ' block' : 'hidden')
           }
         >
           <Menu1 selector_2_1={selector_2_1} toDosList={currentToDo} />
         </div>
         <div
           className={
-            ' p-5 w-max h-max ' + (toggleState === 2 ? ' block' : 'hidden')
+            ' p-5 max-w-6xl h-max ' + (toggleState === 2 ? ' block' : 'hidden')
           }
         >
           <Menu2 />
         </div>
         <div
           className={
-            ' p-5 w-max h-max ' + (toggleState === 3 ? ' block' : 'hidden')
+            ' flex  items-center justify-center max-w-xs ' +
+            (toggleState === 3 ? ' block' : 'hidden')
           }
         >
-          <Menu3 textArea1={textArea1} />
+          <Menu3 textArea1={textArea1} table_2_1={table_2_1} />
         </div>
       </div>
     </div>
